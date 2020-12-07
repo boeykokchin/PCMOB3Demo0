@@ -31,11 +31,9 @@ const names = [
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>{names[0]}</Text>
-      <Text>{names[1]}</Text>
-      <Text>{names[2]}</Text>
-      <Text>{names[3]}</Text>
-      <StatusBar style='auto' />
+      {names.map((name) => (
+        <Text>{name}</Text>
+      ))}
     </View>
   );
 }
