@@ -2751,11 +2751,15 @@ const names = [
   'Zuriel',
 ];
 
-const namesAsObjects = names.map((item) => {
+const namesAsObjects = names.map((item, index) => {
   return {
     name: item,
+    id: index.toString(),
   };
 });
+
+console.log(namesAsObjects[0]);
+console.log(namesAsObjects[1]);
 
 const Item = ({ name }) => (
   <View style={styles.item}>
@@ -2765,7 +2769,11 @@ const Item = ({ name }) => (
 
 export default function App() {
   function renderName({ item }) {
-    return <Text>{item.name}</Text>;
+    return (
+      <SafeAreaView>
+        <Text style={styles.item}>{item.name}</Text>
+      </SafeAreaView>
+    );
   }
 
   return (
