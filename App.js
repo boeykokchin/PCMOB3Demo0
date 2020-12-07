@@ -2768,7 +2768,13 @@ export default function App() {
     return <Text>{item.name}</Text>;
   }
 
-  return <FlatList data={namesAsObjects} renderItem={renderName} />;
+  return (
+    <FlatList
+      data={namesAsObjects}
+      renderItem={renderName}
+      keyExtractor={(item) => item.name}
+    />
+  );
 }
 
 const styles = StyleSheet.create({
