@@ -1,6 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  FlatList,
+  NativeModules,
+} from 'react-native';
 
 const names = [
   'Aaran',
@@ -2743,21 +2751,38 @@ const names = [
   'Zuriel',
 ];
 
+const namesAsObjects = names.map((item) => {
+  return {
+    name: item,
+  };
+});
+
+const Item = ({ name }) => (
+  <View style={styles.item}>
+    <Text style={styles.item}>{name}</Text>
+  </View>
+);
+
 export default function App() {
-  return (
-    <ScrollView contentContainerStyle={styles.contentContainer}>
-      {names.map((name) => (
-        <Text>{name}</Text>
-      ))}
-    </ScrollView>
-  );
+  function renderName({ item }) {
+    return <Text>{item.name}</Text>;
+  }
+
+  return <FlatList data={namesAsObjects} renderItem={renderName} />;
 }
 
 const styles = StyleSheet.create({
-  contentContainer: {
-    // flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
   },
 });
